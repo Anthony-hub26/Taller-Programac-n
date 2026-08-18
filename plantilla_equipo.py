@@ -17,8 +17,17 @@ def validar_texto(valor, nombre_campo="texto"):
 
 
 def validar_entero_positivo(valor, nombre_campo="cantidad"):
-    # TODO
-    pass
+    if isinstance(valor, bool):
+        raise ValueError(f"{nombre_campo} debe ser un entero positivo")
+
+    try:
+        numero = int(valor)
+    except (TypeError, ValueError):
+        raise ValueError(f"{nombre_campo} debe ser un entero positivo") from None
+
+    if numero <= 0:
+        raise ValueError(f"{nombre_campo} debe ser un entero positivo")
+    return numero
 
 
 def validar_decimal_no_negativo(valor, nombre_campo="precio"):
