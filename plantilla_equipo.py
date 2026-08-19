@@ -203,6 +203,63 @@ def mostrar_menu():
 
 
 def ejecutar_programa():
+    bodega = None
+    while True:
+        mostrar_menu()
+        opcion = input("Selecciona un opción: ").strip()
+
+        if opcion == "1":
+            bodega = construir_estructura_ejemplo()
+            print("\n [OK] Estructura de ejemplo cargada.")
+        elif opcion == "2":
+            if not bodega:
+                print("\n[!] Primero cargue la estructura (Opción 1).")
+                continue
+            print("\n---RESUMEN GENERAL---")
+            print(f"Productos diferentes: {contar_productos(bodega)}")
+            print(f"Unidades totales    : {contar_unidades(bodega)}")
+            print(f"Valor total ($)     : ${calcular_valor_total(bodega):.2f}")
+
+        elif opcion == "3":
+            if not bodega:
+                print("\n[!]Primero se debe cargar la estructura (Opción 1).")
+                continue
+            cod = input("Ingrese el código a buscar (ej. P005): ")
+            hallado = buscar_producto(bodega, cod)
+            if hallado:
+                print(f"\n[+] Producto encontrado: {hallado}")
+            else:
+                print(f"\n[-] No se encontró el producto con código '{cod}'.")
+        elif opcion == "4":
+            if not bodega:
+                print("\n[!]Primero se debe cargar la estructura (Opción 1).")
+                continue
+            prods = listar_productos(bodega)
+            print("\n--- LISTADO DE PRODUCTOS ---")
+            for p in prods:
+                print(f"[{p['codigo']}] {p['nombre']} | Cant: {p['cantidad']} | Precio: ${p['precio']:.2f}")
+
+        elif opcion == "5":
+            if not bodega:
+                print("\n[!]Primero se debe cargar la estructura (Opción 1).")
+                continue
+            prof = profundidad_maxima(bodega)
+            print(f"\nProfundiad máxima de la estructura: {prof}")
+
+        elif opcion == "6":
+            if not bodega:
+                print("\n[!]Primero se debe cargar la estructura (Opción 1).")
+                continue
+            reporte = valor_por_contenedor(bodega)
+            print("\n--- REPORTE DE VALOR POR CONTENEDOR ---")
+            for item in reporte:
+                print(f"Contenedor: {item['contenedor']:<20} | Subtotal: ${item['valor']:.2f}")
+
+        elif opcion == "0":
+            print("\nSaliendo del programa...")
+            break
+        else:
+            print("\n[!] Opción válida. Intente de nuevo")
     # TODO: pueden diseñar su flujo interactivo aquí.
     pass
 
