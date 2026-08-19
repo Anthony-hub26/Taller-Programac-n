@@ -92,7 +92,7 @@ def contar_unidades(contenedor):
     total = 0
     for elem in contenedor.get("elementos", []):
         if elem.get("tipo") == "productos":
-            total += elem.get("cantidad", 0)
+            total += int(elem.get("cantidad", 0))
         elif elem.get("tipo") == "contenedor":
             total += contar_unidades(elem)
     return total
@@ -104,7 +104,7 @@ def calcular_valor_total(contenedor):
     total = 0.0
     for elem in contenedor.get("elementos", []):
         if elem.get("tipo") == "producto":
-            total += elem.get("cantidad", 0) * elem.get("get", 0.0)
+            total += int(elem.get("cantidad", 0)) * float(elem.get("precio", 0.0))
         elif elem.get("tipo") == "contenedor":
             total += calcular_valor_total(elem)
     return total
