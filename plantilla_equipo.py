@@ -101,6 +101,13 @@ def contar_unidades(contenedor):
 
 
 def calcular_valor_total(contenedor):
+    total = 0.0
+    for elem in contenedor.get("elementos", []):
+        if elem.get("tipo") == "producto":
+            total += elem.get("cantidad", 0) * elem.get("get", 0.0)
+        elif elem.get("tipo") == "contenedor":
+            total += calcular_valor_total(elem)
+    return total
     # RECURSIVA
     pass
 
