@@ -77,6 +77,13 @@ def agregar_elemento(contenedor, elemento):
 
 
 def contar_productos(contenedor):
+    total = 0
+    for elem in contenedor.get("elementos", []):
+        if elem.get("tipo") == "producto":
+            total += 1
+        elif elem.get("tipo") == "contenedor":
+            total += contar_productos(elem)
+    return total
     # RECURSIVA
     pass
 
