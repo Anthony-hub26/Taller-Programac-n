@@ -40,8 +40,18 @@ def validar_decimal_no_negativo(valor, nombre_campo="precio"):
 
 
 def crear_producto(codigo, nombre, cantidad, precio):
-    # TODO
-    pass
+    cod = validar_texto(codigo, "código").upper()
+    nom = validar_texto(nombre, "nombre")
+    cant = validar_entero_positivo(cantidad, "cantidad")
+    prec = validar_decimal_no_negativo(precio, "precio")
+
+    return{
+        "tipo": "producto",
+        "codigo": cod,
+        "nombre": nom,
+        "cantidad": cant,
+        "precio": prec
+    }
 
 
 def crear_contenedor(nombre):
