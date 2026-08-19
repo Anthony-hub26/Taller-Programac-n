@@ -55,7 +55,12 @@ def crear_producto(codigo, nombre, cantidad, precio):
 
 
 def crear_contenedor(nombre):
-    # TODO
+    nom = validar_texto(nombre, "nombre")
+    return{
+        "tipo": "contenedor",
+        "nombre": nom,
+        "elementos": []
+    }
     pass
 
 
