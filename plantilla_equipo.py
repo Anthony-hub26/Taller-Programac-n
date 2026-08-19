@@ -128,6 +128,13 @@ def buscar_producto(contenedor, codigo):
 
 
 def listar_productos(contenedor):
+    productos = []
+    for elem in contenedor.get("elementos", []):
+        if elem.get("tipo") == "producto":
+            productos.append(elem)
+        elif elem.get("tipo") == "contenedor":
+            productos.extend(listar_productos(elem))
+    return productos 
     # RECURSIVA
     pass
 
