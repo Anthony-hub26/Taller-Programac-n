@@ -89,6 +89,13 @@ def contar_productos(contenedor):
 
 
 def contar_unidades(contenedor):
+    total = 0
+    for elem in contenedor.get("elementos", []):
+        if elem.get("tipo") == "productos":
+            total += elem.get("cantidad", 0)
+        elif elem.get("tipo") == "contenedor":
+            total += contar_unidades(elem)
+    return total
     # RECURSIVA
     pass
 
