@@ -65,7 +65,14 @@ def crear_contenedor(nombre):
 
 
 def agregar_elemento(contenedor, elemento):
-    # TODO
+    if not isinstance(contenedor, dict) or contenedor.get("tipo") != "contenedor" or not isinstance(contenedor.get("elementos"), list):
+        raise ValueError ("El parámetro 'contenedor' no tiene una estructura de contenedor válida.")
+
+    if not isinstance(elemento, dict) or elemento.get("tipo") not in ("producto", "contenedor"):
+        raise ValueError("El 'elemento' a agregar debe ser un producto o un contenedor válido.")
+
+    contenedor["elementos"].append(elemento)
+    return True
     pass
 
 
