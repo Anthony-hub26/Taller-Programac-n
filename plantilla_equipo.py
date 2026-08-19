@@ -12,14 +12,22 @@ IMPORTANTE:
 
 
 def validar_texto(valor, nombre_campo="texto"):
-    # TODO
-    pass
+    if not isinstance(valor, str):
+        raise ValueError(f"El campo '{nombre_campo}' debe ser una cadena de texto.")
+    texto_limpio = valor.strip()
+    if not texto_limpio:
+        raise ValueError(f"El campo '{nombre_campo}' no puede estar vacío.")
+    return texto_limpio
 
 
 def validar_entero_positivo(valor, nombre_campo="cantidad"):
-    # TODO
-    pass
-
+    try:
+        num = int(valor)
+    except (ValueError, TypeError):
+        raise ValueError(f"El campo '{nombre_campo}' debe se un número entero válido.")
+    if num <= 0:
+        raise ValueError(f"El campo '{nombre_campo}' debe ser un entero mayor que cero.")
+    return num
 
 def validar_decimal_no_negativo(valor, nombre_campo="precio"):
     # TODO
