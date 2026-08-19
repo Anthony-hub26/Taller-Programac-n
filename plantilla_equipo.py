@@ -30,8 +30,13 @@ def validar_entero_positivo(valor, nombre_campo="cantidad"):
     return num
 
 def validar_decimal_no_negativo(valor, nombre_campo="precio"):
-    # TODO
-    pass
+    try:
+        num = float(valor)
+    except (ValueError, TypeError):
+        raise ValueError(f"El campo '{nombre_campo}' debe ser un número decimal válido.")
+    if num < 0:
+        raise ValueError(f"El campo '{nombre_campo}' no puede ser un número negativo.")
+    return num
 
 
 def crear_producto(codigo, nombre, cantidad, precio):
