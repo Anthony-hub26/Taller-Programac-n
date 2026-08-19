@@ -158,7 +158,6 @@ def valor_por_contenedor(contenedor):
             "valor": calcular_valor_total(contenedor)
         }
     ]
-
     for elem in contenedor.get("elementos", []):
         if elem.get("tipo") == "contenedor":
             reporte.extend(valor_por_contenedor(elem))
@@ -166,8 +165,39 @@ def valor_por_contenedor(contenedor):
     # RECURSIVA
     pass
 
+def construir_estructura_ejemplo():
+    raiz = crear_contenedor("Bodega principal")
+    caja_a = crear_contenedor("Caja A")
+    caja_b = crear_contenedor("Caja B")
+    sub_b1 = crear_contenedor("Subcaja B1")
+    sub_b2 = crear_contenedor("Subcaja  B2")
+
+    agregar_elemento(raiz, crear_producto("P001", "Agua", 10, 0.75))
+    agregar_elemento(caja_a, crear_producto("P002", "Baterías", 4, 3.50))
+    agregar_elemento(caja_a, crear_producto("P003", "Linternar", 2, 12.00))
+    agregar_elemento(sub_b1, crear_producto("P004", "Cables", 5, 4.00))
+    agregar_elemento(sub_b2, crear_producto("P005", "Adaptadores", 3, 6.25))
+
+    agregar_elemento(sub_b1, sub_b2)
+    agregar_elemento(caja_b, sub_b1)
+    agregar_elemento(raiz, caja_a)
+    agregar_elemento(raiz, caja_b)
+
+    return raiz
+    pass
 
 def mostrar_menu():
+    print("\n################################################")
+    print("SISTEMA LOGÍSTICO DE CONTENEDORES")
+    print("##################################################")
+    print("1. Cargar estructura de prueba")
+    print("2. Ver resumen general (Conteos y Valor Total)")
+    print("3. Buscar un producto por código")
+    print("4. Listar todos los productos")
+    print("5. Ver profundidad máxima de la bodega")
+    print("6. Generar reporte del valor por contenedor")
+    print("0. Salir")
+    print("##################################################")
     # TODO
     pass
 
