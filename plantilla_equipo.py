@@ -113,6 +113,16 @@ def calcular_valor_total(contenedor):
 
 
 def buscar_producto(contenedor, codigo):
+    codigo_buscado = str(codigo).strip().upper()
+    for elem in contenedor.get("elementos", []):
+        if elem.get("tipo") == "producto":
+            if elem.get("codigo", "").upper() == codigo_buscado:
+                return elem
+        elif elem.get("tipo") == "contenedor":
+            hallado = buscar_producto(elem, codigo_buscado)
+            if hallado is not None:
+                return hallado
+    return None
     # RECURSIVA
     pass
 
