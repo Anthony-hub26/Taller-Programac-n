@@ -140,11 +140,29 @@ def listar_productos(contenedor):
 
 
 def profundidad_maxima(contenedor):
+    max_sub = 0
+    for elem in contenedor.get("elementos", []):
+        if elem.get("tipo") == "contenedor":
+            sub_prof = profundidad_maxima(elem)
+            if sub_prof > max_sub:
+                max_sub = sub_prof
+    return 1 + max_sub
     # RECURSIVA
     pass
 
 
 def valor_por_contenedor(contenedor):
+    reporte = [
+        {
+            "contenedor": contenedor.get("nombre", ""),
+            "valor": calcular_valor_total(contenedor)
+        }
+    ]
+
+    for elem in contenedor.get("elementos", []):
+        if elem.get("tipo") == "contenedor":
+            reporte.extend(valor_por_contenedor(elem))
+    return reporte
     # RECURSIVA
     pass
 
