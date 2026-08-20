@@ -1,7 +1,7 @@
 """
 TALLER INTEGRADOR - FUNDAMENTOS DE PROGRAMACIÓN
 Equipo: ________________________________
-Integrantes: ____________________________
+Integrantes: Potosi Anthony, Suquillo Ismael
 
 IMPORTANTE:
 - No cambien los nombres de las funciones solicitadas.
@@ -91,7 +91,7 @@ def contar_productos(contenedor):
 def contar_unidades(contenedor):
     total = 0
     for elem in contenedor.get("elementos", []):
-        if elem.get("tipo") == "productos":
+        if elem.get("tipo") == "producto":
             total += int(elem.get("cantidad", 0))
         elif elem.get("tipo") == "contenedor":
             total += contar_unidades(elem)
